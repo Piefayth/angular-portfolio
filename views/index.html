@@ -9,7 +9,7 @@
     <script src="js/controllers.js"></script>
   </head>
 
-  <body>
+  <body ng-controller="ProjectList">
 
     <div class="jumbotron">
       <div class="content">
@@ -18,13 +18,17 @@
             <span class="header-text">sean ryan</span>
             <br/>
             <span class="header-subtext">interactive portfolio</span>
+            <br />
+            <span class="add-new-project">
+              <i ng-click="addNewProject()" class="glyphicon glyphicon-plus"></i>
+            </span>
           </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container" ng-controller="ProjectList">
+    <div class="container">
       <div ng-repeat="project in projects">
         <div ng-switch on="project.mode">
           <div ng-switch-when="normal">

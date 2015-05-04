@@ -40,6 +40,11 @@ textarea{
   color: #333;
 }
 
+.add-new-project{
+  position: relative;
+  top: 400px;
+}
+
 .title-bar{
   padding-bottom: 20px;
 }
@@ -96,8 +101,8 @@ textarea{
   padding: 20px;
 }
 
-.edit-button:hover, .save-button:hover, .close-button:hover, .delete-button:hover{
-  color: #555;
+.edit-button:hover, .save-button:hover, .close-button:hover, .delete-button:hover, .add-new-project i:hover{
+  color: #777;
   cursor: pointer;
 }
 

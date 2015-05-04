@@ -43,6 +43,30 @@ portfolioApp.controller("ProjectList", function($scope){
       project.mode = 'normal';
     }
   }
+
+  $scope.removeProject = function(project){
+    if($scope.projects.indexOf(project) != -1){
+      $scope.projects.splice($scope.projects.indexOf(project), 1);
+    }
+  }
+
+  $scope.addNewProject = function(){
+    var newproject = {
+      'name': 'New Project',
+      'description': 'Your Description',
+      'imageurl': 'http://yourimage.jpg',
+      'demourl': 'http://projectlocation.com',
+      'browsers': [],
+      'source': 'https://github.com/?',
+      'builton': [],
+      'notes': 'Some notes',
+      'mechanism': 'How does it work?',
+      'mode': 'edit',
+      'cache': null
+      }
+    $scope.projects.unshift(newproject);
+  }
+
   $scope.removeBrowser = function(project, browser){
     project.browsers.splice(project.browsers.indexOf(browser), 1);
   }
@@ -63,6 +87,9 @@ portfolioApp.controller("ProjectList", function($scope){
     }
   }
 
+})
+.config(function($anchorScrollProvider){
+  $anchorScrollProvider.disableAutoScrolling();
 })
 
 portfolioApp.controller("BrowserList", function($scope){
