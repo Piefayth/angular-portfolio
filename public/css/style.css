@@ -12,6 +12,8 @@ textarea{
   width: 100%;
 }
 
+
+
 .jumbotron{
   background-color: transparent;
   height: 800px;
@@ -94,7 +96,7 @@ textarea{
   padding: 20px;
 }
 
-.edit-button:hover, .save-button:hover, .close-button:hover{
+.edit-button:hover, .save-button:hover, .close-button:hover, .delete-button:hover{
   color: #555;
   cursor: pointer;
 }
@@ -106,4 +108,17 @@ textarea{
   padding-bottom: 31px;
   color: #111;
   max-height: 250px;
+}
+
+.builton{
+  display: inline;
+  padding-right: 5px;
+}
+
+.builton-remove{
+  display: inline;
+}
+.builton-text{
+  width: 80%;
+  display: inline;
 }

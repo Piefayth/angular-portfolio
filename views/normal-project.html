@@ -3,12 +3,12 @@
 </div>
 <div class="row">
 <div class= "project-image-wrapper col-md-3 col-xs-4">
-  <p><h3 class="project-name">{{project.name}}</h3></p>
-  <p>{{project.description}}</p>
+  <p><h3 class="project-name" ng-bind="project.name"></h3></p>
+  <p ng-bind="project.description"></p>
 </div>
 <div class="col-md-1"></div>
 <div class= "project-image-wrapper col-md-3 col-xs-4">
-  <div class="project-image"><img src="{{project.imageurl}}" height="200" /></div>
+  <div class="project-image"><a href="{{project.demourl}}"><img src="{{project.imageurl}}" height="200" /></a></div>
 </div>
 
 <div class="col-md-1"></div>
@@ -18,10 +18,8 @@
   <span ng-repeat="browser in project.browsers">
     <img ng-src="img/{{browser.replace(' ', '')}}.png">
   </span>
-<h4>Social</h4>
-  <img src="img/reddit.png" />
-  <img src="img/facebook.png" />
-  <img src="img/github.png" />
+<h4>Code</h4>
+  <a href="{{project.source}}"><img src="img/github.png" /></a>
 </div>
 </div>
 
@@ -33,19 +31,17 @@
   <div class="col-md-3 col-xs-4">
    <p><h4>Built On</h4></p>
    <ul>
-   <li>Node.js</li>
-   <li>Bootstrap</li>
-   <li>jQuery</li>
+   <li ng-repeat="item in project.builton" ng-bind="item"></li>
    </ul>
  </div>
  <div class="col-md-1"></div>
  <div class="col-md-3 col-xs-4">
    <p><h4>Notes</h4></p>
-  <p>A variable controls the amount of concurrent urls that the server will process to prevent 100% server resource usage from a single client.</p>
+  <p ng-bind="project.notes"></p>
 </div>
 <div class="col-md-1"></div>
 <div class="col-md-3 col-xs-4">
  <p><h4>Mechanism</h4></p>
- <p>After parsing the URLs from the provided input, this tool attempts to access each resource. It returns a pass or fail based on the http status code and the MIME type of the body of the response.</p>
+ <p ng-bind="project.mechanism"></p>
 </div>
 </div>
