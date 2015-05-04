@@ -1,0 +1,63 @@
+<div class="row project-images-background">
+  <i ng-click="changeMode(project)" class="glyphicon glyphicon-ok save-button"></i>
+  <i ng-click="discardChanges(project)" class="glyphicon glyphicon-remove close-button"></i>
+</div>
+<div class="row">
+<div class= "project-image-wrapper col-md-3 col-xs-4">
+  <p><input type='text' class="form-control" ng-model="project.name"></p>
+  <p><textarea class="form-control" rows="5" ng-model="project.description"></textarea></p>
+</div>
+<div class="col-md-1"></div>
+<div class= "project-image-wrapper col-md-3 col-xs-4">
+  <div class="project-image"><input type='text' class="form-control" ng-model="project.imageurl"></div>
+</div>
+
+<div class="col-md-1"></div>
+<div class= "col-md-3 col-xs-4">
+
+<h4>Browsers</h4>
+<span ng-repeat="browser in project.browsers">
+  <img ng-click="removeBrowser(project, browser)" ng-src="img/{{browser.replace(' ', '')}}.png">
+</span>
+
+<span ng-controller='BrowserList'>
+  <i ng-click="showAvailableBrowsers()" class="glyphicon glyphicon-plus"></i>
+  <div ng-show='clicked'>
+    <span ng-repeat="browser in browsers | filter: browsersMissing(project.browsers)">
+      <img ng-click="addBrowser(project, browser)" ng-src="img/{{browser.replace(' ', '')}}.png">
+    </span>
+  </div>
+</span>
+
+
+<h4>Social</h4>
+  <img src="img/reddit.png" />
+  <img src="img/facebook.png" />
+  <img src="img/github.png" />
+</div>
+</div>
+
+
+<div class="row project-description-background">
+</div>
+<div class="row median">
+
+  <div class="col-md-3 col-xs-4">
+   <p><h4>Built On</h4></p>
+   <ul>
+   <li>Node.js</li>
+   <li>Bootstrap</li>
+   <li>jQuery</li>
+   </ul>
+ </div>
+ <div class="col-md-1"></div>
+ <div class="col-md-3 col-xs-4">
+   <p><h4>Notes</h4></p>
+  <p>A variable controls the amount of concurrent urls that the server will process to prevent 100% server resource usage from a single client.</p>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-3 col-xs-4">
+ <p><h4>Mechanism</h4></p>
+ <p>After parsing the URLs from the provided input, this tool attempts to access each resource. It returns a pass or fail based on the http status code and the MIME type of the body of the response.</p>
+</div>
+</div>

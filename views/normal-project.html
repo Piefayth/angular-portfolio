@@ -1,0 +1,51 @@
+<div class="row project-images-background">
+  <i ng-click="changeMode(project)" class="glyphicon glyphicon-pencil edit-button"></i>
+</div>
+<div class="row">
+<div class= "project-image-wrapper col-md-3 col-xs-4">
+  <p><h3 class="project-name">{{project.name}}</h3></p>
+  <p>{{project.description}}</p>
+</div>
+<div class="col-md-1"></div>
+<div class= "project-image-wrapper col-md-3 col-xs-4">
+  <div class="project-image"><img src="{{project.imageurl}}" height="200" /></div>
+</div>
+
+<div class="col-md-1"></div>
+<div class= "col-md-3 col-xs-4">
+
+<h4>Browsers</h4>
+  <span ng-repeat="browser in project.browsers">
+    <img ng-src="img/{{browser.replace(' ', '')}}.png">
+  </span>
+<h4>Social</h4>
+  <img src="img/reddit.png" />
+  <img src="img/facebook.png" />
+  <img src="img/github.png" />
+</div>
+</div>
+
+
+<div class="row project-description-background">
+</div>
+<div class="row median">
+
+  <div class="col-md-3 col-xs-4">
+   <p><h4>Built On</h4></p>
+   <ul>
+   <li>Node.js</li>
+   <li>Bootstrap</li>
+   <li>jQuery</li>
+   </ul>
+ </div>
+ <div class="col-md-1"></div>
+ <div class="col-md-3 col-xs-4">
+   <p><h4>Notes</h4></p>
+  <p>A variable controls the amount of concurrent urls that the server will process to prevent 100% server resource usage from a single client.</p>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-3 col-xs-4">
+ <p><h4>Mechanism</h4></p>
+ <p>After parsing the URLs from the provided input, this tool attempts to access each resource. It returns a pass or fail based on the http status code and the MIME type of the body of the response.</p>
+</div>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html ng-app="portfolioApp">
+
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/angular.js"></script>
+    <script src="js/controllers.js"></script>
+  </head>
+
+  <body>
+
+    <div class="jumbotron">
+      <div class="content">
+        <div class="row">
+          <div class="text-center">
+            <span class="header-text">sean ryan</span>
+            <br/>
+            <span class="header-subtext">interactive portfolio</span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" ng-controller="ProjectList">
+      <div ng-repeat="project in projects">
+        <div ng-switch on="project.mode">
+          <div ng-switch-when="normal">
+            <div ng-model="project" ng-include src="'normal-project'">
+            </div>
+          </div>
+          <div ng-switch-when="edit">
+            <div ng-model="project" ng-include src="'edit-project'">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </body>
+</html>
