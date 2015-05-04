@@ -57,7 +57,7 @@ textarea{
 }
 
 .project-image img{
-  width: 100%;
+  max-width: 400px;
 }
 
 .project-image-wrapper{
@@ -65,7 +65,7 @@ textarea{
   padding: 0px;
   overflow: hidden;
   padding: none;
-  max-width: 300px;
+  max-width: 400px;
 
 }
 
