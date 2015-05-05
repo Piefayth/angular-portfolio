@@ -1,56 +1,45 @@
-var portfolioApp = angular.module('portfolioApp', []);
+var portfolioApp = angular.module('portfolioApp', ['ngResource']);
 
-portfolioApp.controller("ProjectList", function($scope){
-  $scope.projects = [
-    { 'name': 'Photo URL Integrity Tool',
-      'description': 'This tool batch-requests a set of image URLs as defined in a list or file, then returns them to the client as they are processing via server sent events.',
-      'imageurl': 'img/Capture.PNG',
-      'demourl': 'http://seanryan.tips/photourls/',
-      'browsers': ['Firefox', 'Internet Explorer', 'Chrome', 'iOS'],
-      'source': 'https://github.com/Piefayth/angular-portfolio',
-      'builton': ['node.js', 'Bootstrap', 'jQuery'],
-      'notes': 'A variable controls the amount of concurrent urls that the server will process to prevent 100% server resource usage from a single client.',
-      'mechanism': 'After parsing the URLs from the provided input, this tool attempts to access each resource. It returns a pass or fail based on the http status code and the MIME type of the body of the response.',
-      'mode': 'normal',
-      'cache': null
-    },
-    { 'name': 'Popgom',
-      'description': 'A user and room manager for HTML5 multiplayer games. Includes 1 to 1 or group chat and an API for partnered developers to access users in their game\'s rooms. Additionally includes a multiplayer demo game.',
-      'imageurl': 'img/Capture2.PNG',
-      'demourl': 'http://seanryan.tips/popgom/',
-      'browsers': ['Firefox', 'Chrome'],
-      'source': 'https://github.com/Piefayth/angular-portfolio',
-      'builton': ['node.js', 'socket.io', 'jQuery'],
-      'notes': 'This project wasn\'t built on any particular framework. It largely uses jQuery for the DOM manipulation, and any cleanup associated with removed elements is done manually. Minimal server side templating was done with EJS.',
-      'mechanism': 'Each \"page\" of the application is a dumb template served via http then populated with logic after the response completes. Rooms are tracked with MongoDB as well as with socket.io\'s rooms abstraction, requiring them to be kept carefully in sync.',
-      'mode': 'normal',
-      'cache': null
-    }];
+portfolioApp.controller("ProjectList", function($scope, Project){
 
+  $scope.projects = Project.query(function(){});
+
+  //Logic for the Edit and Save buttons
   $scope.changeMode = function(project){
     if(project.mode == 'normal'){
       project.cache = angular.copy(project);
       project.mode = 'edit';
     } else {
+      project.$update(function(){});
       project.mode = 'normal';
     }
   }
+
   $scope.discardChanges = function(project){
-    if(project.mode == 'edit'){
+    if(project.mode == 'edit' && project.cache != null){
+
       for(var k in project.cache){
-        project[k] = project.cache[k];
+        if(project.cache[k])
+          project[k] = project.cache[k];
       }
       project.mode = 'normal';
     }
   }
 
   $scope.removeProject = function(project){
+
+    project.$delete(function(){
+      console.log('baleeted');
+    });
+
     if($scope.projects.indexOf(project) != -1){
       $scope.projects.splice($scope.projects.indexOf(project), 1);
     }
+
   }
 
   $scope.addNewProject = function(){
+
     var newproject = {
       'name': 'New Project',
       'description': 'Your Description',
@@ -64,10 +53,16 @@ portfolioApp.controller("ProjectList", function($scope){
       'mode': 'edit',
       'cache': null
       }
-    $scope.projects.unshift(newproject);
+
+    Project.save(newproject, function(savedProject){
+      console.log(savedProject);
+      newproject.id = savedProject.id;
+      $scope.projects.unshift(savedProject);
+    });
   }
 
   $scope.removeBrowser = function(project, browser){
+
     project.browsers.splice(project.browsers.indexOf(browser), 1);
   }
 
@@ -90,6 +85,12 @@ portfolioApp.controller("ProjectList", function($scope){
 })
 .config(function($anchorScrollProvider){
   $anchorScrollProvider.disableAutoScrolling();
+})
+.factory('Project', function($resource){
+  return $resource('/api/projects/:id', { id: '@_id' },
+    {
+      'update': { method:'PUT' }
+    });
 })
 
 portfolioApp.controller("BrowserList", function($scope){
