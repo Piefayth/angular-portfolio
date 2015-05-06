@@ -76,7 +76,7 @@ module.exports = function(app){
     if(req.session && req.session.auth){
       var project = req.body;
 
-      Project.findOne({ id: project.id }, function(err, dbUpdateProject){
+      Project.findOne({ _id: project._id }, function(err, dbUpdateProject){
         for(var key in project){
           if(project[key] && dbUpdateProject[key]){
             dbUpdateProject[key] = project[key];
