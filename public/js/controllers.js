@@ -43,14 +43,14 @@ portfolioApp.controller("ProjectList", function($scope, Project){
     var newproject = {
       'name': 'New Project',
       'description': 'Your Description',
-      'imageurl': 'http://yourimage.jpg',
-      'demourl': 'http://projectlocation.com',
+      'imageurl': 'img/default.png',
+      'demourl': 'http://seanryan.tips',
       'browsers': [],
       'source': 'https://github.com/?',
       'builton': [],
       'notes': 'Some notes',
       'mechanism': 'How does it work?',
-      'mode': 'edit',
+      'mode': 'normal',
       'cache': null
       }
 
