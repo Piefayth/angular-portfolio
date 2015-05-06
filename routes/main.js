@@ -91,8 +91,10 @@ module.exports = function(app){
 
   app.delete('/api/projects/:project', function(req, res){
     //deletes one project by id req.params.project
+
     if(req.session && req.session.auth){
-      Project.find({id: req.params.project.id}).remove().exec();
+      if(req.params.project)
+        Project.find({_id: req.params.project}).remove().exec();
     }
     res.end();
   })
