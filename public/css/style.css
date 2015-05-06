@@ -42,6 +42,14 @@ textarea{
 
 .add-new-project{
   position: relative;
+  top: 600px;
+}
+.add-new-project .glyphicon{
+  left: -20px;
+}
+
+.down-arrow{
+  position: relative;
   top: 400px;
 }
 
@@ -99,6 +107,7 @@ textarea{
 
 .edit-button, .save-button, .close-button{
   padding: 20px;
+  z-index: 999;
 }
 
 .edit-button:hover, .save-button:hover, .close-button:hover, .delete-button:hover, .add-new-project i:hover{
