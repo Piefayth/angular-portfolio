@@ -45,7 +45,7 @@ module.exports = function(app){
 
     //get list of projects
 
-    var response = Project.find().exec(function(err, data){
+    var response = Project.find().sort('-timestamp').exec(function(err, data){
       response = data;
       res.json(response);
     });
